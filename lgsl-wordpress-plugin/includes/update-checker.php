@@ -48,7 +48,7 @@ class LGSL_Update_Checker {
             $res->homepage = $update_info->url;
             $res->download_link = $update_info->package;
             $res->sections = array(
-                'description' => 'A WordPress plugin to integrate LGSL (Live Game Server List) using an existing LGSL installation\'s MySQL database.',
+                'description' => __('A WordPress plugin to integrate LGSL (Live Game Server List) using an existing LGSL installation\'s MySQL database.', 'lgsl-wordpress-plugin'),
                 'changelog' => isset($update_info->changelog) ? $update_info->changelog : '',
             );
         }

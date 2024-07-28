@@ -3,10 +3,12 @@
  * Plugin Name: LGSL WordPress Plugin
  * Plugin URI: https://github.com/wahke/lgsl-wordpress-plugin
  * Description: A WordPress plugin to integrate LGSL (Live Game Server List) using an existing LGSL installation's MySQL database.
- * Version: 1.1
+ * Version: 1.2
  * Author: wahke
  * Author URI: https://wahke.me
  * License: GPL2
+ * Text Domain: lgsl-wordpress-plugin
+ * Domain Path: /languages
  */
 
 if (!defined('ABSPATH')) {
@@ -14,6 +16,12 @@ if (!defined('ABSPATH')) {
 }
 
 include_once plugin_dir_path(__FILE__) . 'includes/update-checker.php';
+
+// Load plugin textdomain
+function lgsl_load_textdomain() {
+    load_plugin_textdomain('lgsl-wordpress-plugin', false, basename(dirname(__FILE__)) . '/languages');
+}
+add_action('plugins_loaded', 'lgsl_load_textdomain');
 
 // Rest of your plugin code...
 
@@ -58,8 +66,8 @@ add_action('admin_menu', 'lgsl_create_menu');
 
 function lgsl_create_menu() {
     add_menu_page(
-        'LGSL Settings',
-        'LGSL Settings',
+        __('LGSL Settings', 'lgsl-wordpress-plugin'),
+        __('LGSL Settings', 'lgsl-wordpress-plugin'),
         'manage_options',
         'lgsl-settings',
         'lgsl_settings_page',
@@ -106,91 +114,91 @@ function lgsl_settings_page() {
 
     ?>
     <div class="wrap">
-        <h1>LGSL Settings</h1>
+        <h1><?php _e('LGSL Settings', 'lgsl-wordpress-plugin'); ?></h1>
         <form method="post" action="options.php">
             <?php settings_fields('lgsl-settings-group'); ?>
             <?php do_settings_sections('lgsl-settings-group'); ?>
             <div class="lgsl-settings-container">
                 <div class="lgsl-settings-column">
-                    <h2>Datenbankeinstellungen</h2>
-                    <p>Bitte geben Sie die Datenbankdetails Ihrer bestehenden LGSL-Installation ein. Diese Informationen werden verwendet, um die Serverdaten in WordPress anzuzeigen.</p>
+                    <h2><?php _e('Database Settings', 'lgsl-wordpress-plugin'); ?></h2>
+                    <p><?php _e('Please enter the database details of your existing LGSL installation. This information will be used to display the server data in WordPress.', 'lgsl-wordpress-plugin'); ?></p>
                     <table class="form-table lgsl-centered-table">
                         <tr valign="top">
-                            <th scope="row">Database Host</th>
+                            <th scope="row"><?php _e('Database Host', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="text" name="lgsl_db_host" value="<?php echo esc_attr(get_option('lgsl_db_host', 'localhost')); ?>" /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Database Name</th>
+                            <th scope="row"><?php _e('Database Name', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="text" name="lgsl_db_name" value="<?php echo esc_attr(get_option('lgsl_db_name')); ?>" /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Database User</th>
+                            <th scope="row"><?php _e('Database User', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="text" name="lgsl_db_user" value="<?php echo esc_attr(get_option('lgsl_db_user')); ?>" /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Database Password</th>
+                            <th scope="row"><?php _e('Database Password', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="password" name="lgsl_db_pass" value="<?php echo esc_attr(get_option('lgsl_db_pass')); ?>" /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Database Table</th>
+                            <th scope="row"><?php _e('Database Table', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="text" name="lgsl_db_table" value="<?php echo esc_attr(get_option('lgsl_db_table', 'lgsl')); ?>" /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Base URL</th>
+                            <th scope="row"><?php _e('Base URL', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="text" name="lgsl_base_url" value="<?php echo esc_attr(get_option('lgsl_base_url')); ?>" /></td>
                         </tr>
                     </table>
                 </div>
                 <div class="lgsl-settings-column">
-                    <h2>Anzeigeneinstellungen</h2>
-                    <p>Diese Einstellungen bestimmen, welche Informationen in der Serverliste angezeigt werden. Dies betrifft den Shortcode <code>[lgsl_server_list]</code>.</p>
+                    <h2><?php _e('Display Settings', 'lgsl-wordpress-plugin'); ?></h2>
+                    <p><?php _e('These settings determine which information is displayed in the server list. This affects the shortcode', 'lgsl-wordpress-plugin'); ?> <code>[lgsl_server_list]</code>.</p>
                     <table class="form-table lgsl-centered-table">
                         <tr valign="top">
-                            <th scope="row">Server Name anzeigen</th>
+                            <th scope="row"><?php _e('Show Server Name', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="checkbox" name="lgsl_display_servername" value="1" <?php checked(1, get_option('lgsl_display_servername', 1)); ?> /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">IP anzeigen</th>
+                            <th scope="row"><?php _e('Show IP', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="checkbox" name="lgsl_display_ip" value="1" <?php checked(1, get_option('lgsl_display_ip', 1)); ?> /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Port anzeigen</th>
+                            <th scope="row"><?php _e('Show Port', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="checkbox" name="lgsl_display_port" value="1" <?php checked(1, get_option('lgsl_display_port', 1)); ?> /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Game anzeigen</th>
+                            <th scope="row"><?php _e('Show Game', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="checkbox" name="lgsl_display_game" value="1" <?php checked(1, get_option('lgsl_display_game', 1)); ?> /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Map anzeigen</th>
+                            <th scope="row"><?php _e('Show Map', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="checkbox" name="lgsl_display_map" value="1" <?php checked(1, get_option('lgsl_display_map', 1)); ?> /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Spieleranzahl anzeigen</th>
+                            <th scope="row"><?php _e('Show Players', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="checkbox" name="lgsl_display_players" value="1" <?php checked(1, get_option('lgsl_display_players', 1)); ?> /></td>
                         </tr>
                         <tr valign="top">
-                            <th scope="row">Status anzeigen</th>
+                            <th scope="row"><?php _e('Show Status', 'lgsl-wordpress-plugin'); ?></th>
                             <td><input type="checkbox" name="lgsl_display_status" value="1" <?php checked(1, get_option('lgsl_display_status', 1)); ?> /></td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="lgsl-available-ids">
-                <h2>Verfügbare Server-IDs</h2>
-                <p><?php echo $available_ids ? $available_ids : 'Keine Server-IDs gefunden.'; ?></p>
+                <h2><?php _e('Available Server IDs', 'lgsl-wordpress-plugin'); ?></h2>
+                <p><?php echo $available_ids ? $available_ids : __('No server IDs found.', 'lgsl-wordpress-plugin'); ?></p>
             </div>
             <div class="lgsl-centered-button">
-                <?php submit_button('Save Settings and Finish Setup'); ?>
+                <?php submit_button(__('Save Settings and Finish Setup', 'lgsl-wordpress-plugin')); ?>
             </div>
         </form>
-        <h2>Verfügbare Shortcodes</h2>
+        <h2><?php _e('Available Shortcodes', 'lgsl-wordpress-plugin'); ?></h2>
         <ul>
-            <li><strong>[lgsl_server_list]</strong>: Zeigt die Serverliste basierend auf den Anzeigeneinstellungen im Admin-Bereich an.</li>
-            <li><strong>[lgsl_server_list id="1,2,3"]</strong>: Zeigt die Serverliste für die angegebenen Server-IDs an und ignoriert die Anzeigeneinstellungen im Admin-Bereich.</li>
-            <li><strong>[lgsl_server_list id="1,2,3" show_servername="false" show_ip="false" show_port="true" show_game="true" show_map="true" show_players="true" show_status="false"]</strong>: Zeigt die Serverliste für die angegebenen Server-IDs an und verwendet die angegebenen Anzeigeoptionen, um bestimmte Informationen anzuzeigen oder auszublenden.</li>
+            <li><strong>[lgsl_server_list]</strong>: <?php _e('Displays the server list based on the display settings in the admin panel.', 'lgsl-wordpress-plugin'); ?></li>
+            <li><strong>[lgsl_server_list id="1,2,3"]</strong>: <?php _e('Displays the server list for the specified server IDs and ignores the display settings in the admin panel.', 'lgsl-wordpress-plugin'); ?></li>
+            <li><strong>[lgsl_server_list id="1,2,3" show_servername="false" show_ip="false" show_port="true" show_game="true" show_map="true" show_players="true" show_status="false"]</strong>: <?php _e('Displays the server list for the specified server IDs and uses the provided display options to show or hide specific information.', 'lgsl-wordpress-plugin'); ?></li>
         </ul>
-        <p>&copy; <?php echo date("Y"); ?> wahke. Alle Rechte vorbehalten.</p>
+        <p>&copy; <?php echo date("Y"); ?> wahke. <?php _e('All rights reserved.', 'lgsl-wordpress-plugin'); ?></p>
     </div>
     <?php
 }
@@ -301,7 +309,7 @@ function lgsl_display_server_list($atts) {
     if (file_exists($file_path)) {
         include $file_path;
     } else {
-        echo "Die Datei lgsl_list.php wurde nicht gefunden.";
+        echo __('The file lgsl_list.php was not found.', 'lgsl-wordpress-plugin');
     }
     return ob_get_clean();
 }
