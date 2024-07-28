@@ -3,7 +3,7 @@
  * Plugin Name: LGSL WordPress Plugin
  * Plugin URI: https://github.com/wahke/lgsl-wordpress-plugin
  * Description: A WordPress plugin to integrate LGSL (Live Game Server List) using an existing LGSL installation's MySQL database.
- * Version: 1.0
+ * Version: 1.1
  * Author: wahke
  * Author URI: https://wahke.me
  * License: GPL2
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 
 // Add a function to check for plugin updates
 function lgsl_check_for_plugin_update() {
-    $current_version = '1.0';
+    $current_version = '1.1';
     $remote_version_info_url = 'https://github.com/wahke/lgsl-wordpress-plugin/raw/main/lgsl-version.json'; // Replace with the URL to your version file
 
     $response = wp_remote_get($remote_version_info_url);
