@@ -13,32 +13,9 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-// Add a function to check for plugin updates
-function lgsl_check_for_plugin_update() {
-    $current_version = '1.1';
-    $remote_version_info_url = 'https://github.com/wahke/lgsl-wordpress-plugin/raw/main/lgsl-version.json'; // Replace with the URL to your version file
+include_once plugin_dir_path(__FILE__) . 'includes/update-checker.php';
 
-    $response = wp_remote_get($remote_version_info_url);
-    if (is_wp_error($response)) {
-        return;
-    }
-
-    $response_body = wp_remote_retrieve_body($response);
-    $version_info = json_decode($response_body, true);
-
-    if (isset($version_info['version']) && version_compare($current_version, $version_info['version'], '<')) {
-        add_action('admin_notices', 'lgsl_update_notification');
-    }
-}
-add_action('admin_init', 'lgsl_check_for_plugin_update');
-
-function lgsl_update_notification() {
-    $update_url = 'https://github.com/wahke/lgsl-wordpress-plugin/releases/download/lastet/lgsl-lastet.zip'; // Replace with the URL to your update file
-    echo '<div class="notice notice-warning is-dismissible">
-        <p>Es ist eine neue Version des LGSL WordPress Plugins verfügbar. <a href="' . esc_url($update_url) . '">Jetzt aktualisieren</a>.</p>
-    </div>';
-}
-
+// Rest of your plugin code...
 
 // Activation hook to set default options and redirect to setup
 function lgsl_activate_plugin() {
@@ -200,18 +177,18 @@ function lgsl_settings_page() {
                 </div>
             </div>
             <div class="lgsl-available-ids">
-                <h2>VerfÃ¼gbare Server-IDs</h2>
+                <h2>Verfügbare Server-IDs</h2>
                 <p><?php echo $available_ids ? $available_ids : 'Keine Server-IDs gefunden.'; ?></p>
             </div>
             <div class="lgsl-centered-button">
                 <?php submit_button('Save Settings and Finish Setup'); ?>
             </div>
         </form>
-        <h2>VerfÃ¼gbare Shortcodes</h2>
+        <h2>Verfügbare Shortcodes</h2>
         <ul>
             <li><strong>[lgsl_server_list]</strong>: Zeigt die Serverliste basierend auf den Anzeigeneinstellungen im Admin-Bereich an.</li>
-            <li><strong>[lgsl_server_list id="1,2,3"]</strong>: Zeigt die Serverliste fÃ¼r die angegebenen Server-IDs an und ignoriert die Anzeigeneinstellungen im Admin-Bereich.</li>
-            <li><strong>[lgsl_server_list id="1,2,3" show_servername="false" show_ip="false" show_port="true" show_game="true" show_map="true" show_players="true" show_status="false"]</strong>: Zeigt die Serverliste fÃ¼r die angegebenen Server-IDs an und verwendet die angegebenen Anzeigeoptionen, um bestimmte Informationen anzuzeigen oder auszublenden.</li>
+            <li><strong>[lgsl_server_list id="1,2,3"]</strong>: Zeigt die Serverliste für die angegebenen Server-IDs an und ignoriert die Anzeigeneinstellungen im Admin-Bereich.</li>
+            <li><strong>[lgsl_server_list id="1,2,3" show_servername="false" show_ip="false" show_port="true" show_game="true" show_map="true" show_players="true" show_status="false"]</strong>: Zeigt die Serverliste für die angegebenen Server-IDs an und verwendet die angegebenen Anzeigeoptionen, um bestimmte Informationen anzuzeigen oder auszublenden.</li>
         </ul>
         <p>&copy; <?php echo date("Y"); ?> wahke. Alle Rechte vorbehalten.</p>
     </div>
