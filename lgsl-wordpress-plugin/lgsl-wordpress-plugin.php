@@ -33,7 +33,7 @@ function lgsl_check_for_plugin_update() {
 add_action('admin_init', 'lgsl_check_for_plugin_update');
 
 function lgsl_update_notification() {
-    $update_url = 'https://your-update-server.com/lgsl-latest.zip'; // Replace with the URL to your update file
+    $update_url = 'https://github.com/wahke/lgsl-wordpress-plugin/releases/download/lastet/lgsl-lastet.zip'; // Replace with the URL to your update file
     echo '<div class="notice notice-warning is-dismissible">
         <p>Es ist eine neue Version des LGSL WordPress Plugins verfügbar. <a href="' . esc_url($update_url) . '">Jetzt aktualisieren</a>.</p>
     </div>';

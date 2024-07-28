@@ -1,4 +1,5 @@
 {
-    "version": "1.1",
-    "changelog": "Hier sind die Änderungen in der neuen Version..."
+    "new_version": "1.1",
+    "package": "https://github.com/wahke/lgsl-wordpress-plugin/releases/download/lastet/lgsl-lastet.zip",
+    "url": "https://github.com/wahke/lgsl-wordpress-plugin/"
 }
