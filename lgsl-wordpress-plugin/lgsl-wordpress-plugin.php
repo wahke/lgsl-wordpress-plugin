@@ -177,18 +177,18 @@ function lgsl_settings_page() {
                 </div>
             </div>
             <div class="lgsl-available-ids">
-                <h2>Verfügbare Server-IDs</h2>
+                <h2>VerfÃ¼gbare Server-IDs</h2>
                 <p><?php echo $available_ids ? $available_ids : 'Keine Server-IDs gefunden.'; ?></p>
             </div>
             <div class="lgsl-centered-button">
                 <?php submit_button('Save Settings and Finish Setup'); ?>
             </div>
         </form>
-        <h2>Verfügbare Shortcodes</h2>
+        <h2>VerfÃ¼gbare Shortcodes</h2>
         <ul>
             <li><strong>[lgsl_server_list]</strong>: Zeigt die Serverliste basierend auf den Anzeigeneinstellungen im Admin-Bereich an.</li>
-            <li><strong>[lgsl_server_list id="1,2,3"]</strong>: Zeigt die Serverliste für die angegebenen Server-IDs an und ignoriert die Anzeigeneinstellungen im Admin-Bereich.</li>
-            <li><strong>[lgsl_server_list id="1,2,3" show_servername="false" show_ip="false" show_port="true" show_game="true" show_map="true" show_players="true" show_status="false"]</strong>: Zeigt die Serverliste für die angegebenen Server-IDs an und verwendet die angegebenen Anzeigeoptionen, um bestimmte Informationen anzuzeigen oder auszublenden.</li>
+            <li><strong>[lgsl_server_list id="1,2,3"]</strong>: Zeigt die Serverliste fÃ¼r die angegebenen Server-IDs an und ignoriert die Anzeigeneinstellungen im Admin-Bereich.</li>
+            <li><strong>[lgsl_server_list id="1,2,3" show_servername="false" show_ip="false" show_port="true" show_game="true" show_map="true" show_players="true" show_status="false"]</strong>: Zeigt die Serverliste fÃ¼r die angegebenen Server-IDs an und verwendet die angegebenen Anzeigeoptionen, um bestimmte Informationen anzuzeigen oder auszublenden.</li>
         </ul>
         <p>&copy; <?php echo date("Y"); ?> wahke. Alle Rechte vorbehalten.</p>
     </div>

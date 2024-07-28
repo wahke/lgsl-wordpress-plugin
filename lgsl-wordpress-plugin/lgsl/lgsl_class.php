@@ -1,5 +1,5 @@
 <?php
-// Überprüfe und definiere Konfigurationsvariablen
+// ÃœberprÃ¼fe und definiere Konfigurationsvariablen
 if (defined('LGSL_DB_HOST') && defined('LGSL_DB_NAME') && defined('LGSL_DB_USER') && defined('LGSL_DB_PASS')) {
     // Initialisiere die Datenbankverbindung
     global $lgsl_db;
@@ -183,7 +183,7 @@ if (defined('LGSL_DB_HOST') && defined('LGSL_DB_NAME') && defined('LGSL_DB_USER'
         echo "<hr>";
     }
 
-    // Beispiel: Datenbankabfrage durchführen und Serverinformationen anzeigen
+    // Beispiel: Datenbankabfrage durchfÃ¼hren und Serverinformationen anzeigen
     function lgsl_show_all_servers() {
         global $lgsl_db;
         

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 class LGSL_Update_Checker {
     private $plugin_slug;
     private $version;
@@ -56,4 +56,4 @@ class LGSL_Update_Checker {
     }
 }
 
-new LGSL_Update_Checker('lgsl-wordpress-plugin', '1.1', 'https://github.com/wahke/lgsl-wordpress-plugin/raw/main/lgsl-version.json');
+new LGSL_Update_Checker('lgsl-wordpress-plugin', '1.2', 'https://github.com/wahke/lgsl-wordpress-plugin/raw/main/lgsl-version.json');

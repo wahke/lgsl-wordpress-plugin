@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 // Sicherstellen, dass die Datenbankverbindung vorhanden ist
 global $lgsl_db;
 if (!isset($lgsl_db)) {
-    echo "Keine Datenbankverbindung verfügbar.";
+    echo "Keine Datenbankverbindung verfÃ¼gbar.";
     return;
 }
 
@@ -71,7 +71,7 @@ if ($result->num_rows > 0) {
             echo "</tr>";
         } else {
             echo "<tr>";
-            echo "<td colspan='7'>Ungültiger Cache-Inhalt</td>";
+            echo "<td colspan='7'>UngÃ¼ltiger Cache-Inhalt</td>";
             echo "</tr>";
         }
     }
