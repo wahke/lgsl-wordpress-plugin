@@ -13,6 +13,33 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
+// Add a function to check for plugin updates
+function lgsl_check_for_plugin_update() {
+    $current_version = '1.0';
+    $remote_version_info_url = 'https://github.com/wahke/lgsl-wordpress-plugin/raw/main/lgsl-version.json'; // Replace with the URL to your version file
+
+    $response = wp_remote_get($remote_version_info_url);
+    if (is_wp_error($response)) {
+        return;
+    }
+
+    $response_body = wp_remote_retrieve_body($response);
+    $version_info = json_decode($response_body, true);
+
+    if (isset($version_info['version']) && version_compare($current_version, $version_info['version'], '<')) {
+        add_action('admin_notices', 'lgsl_update_notification');
+    }
+}
+add_action('admin_init', 'lgsl_check_for_plugin_update');
+
+function lgsl_update_notification() {
+    $update_url = 'https://your-update-server.com/lgsl-latest.zip'; // Replace with the URL to your update file
+    echo '<div class="notice notice-warning is-dismissible">
+        <p>Es ist eine neue Version des LGSL WordPress Plugins verfügbar. <a href="' . esc_url($update_url) . '">Jetzt aktualisieren</a>.</p>
+    </div>';
+}
+
+
 // Activation hook to set default options and redirect to setup
 function lgsl_activate_plugin() {
     // Set default options on activation
