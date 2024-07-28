@@ -1,6 +1,7 @@
 {
     "new_version": "1.2",
-    "package": "https://github.com/wahke/lgsl-wordpress-plugin/releases/download/lastet/lgsl-lastet.zip",
+    "package": "https://github.com/wahke/lgsl-wordpress-plugin/releases/download/latest/lgsl-latest.zip",
     "url": "https://github.com/wahke/lgsl-wordpress-plugin",
-    "changelog": "Hier sind die Änderungen in der neuen Version..."
+    "changelog": " - Update Funktion hinzugefügt\n - Multi Language hinzugefügt\n - Deutsch und English"
 }
+
